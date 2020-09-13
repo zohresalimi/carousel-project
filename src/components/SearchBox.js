@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import fetchPhotos from "../services/photo-service";
 
 import './SearchResult.css';
 function SearchBox(props) {
+    const [images, setImages] = useState([])
+    const inputElement = useRef(null)
+    
+    const searchPhotos = async () => {
+        console.log(inputElement.current.value)
+        const searchResult = await fetchPhotos(inputElement.current.value)
+        mapImages(searchResult.results)
+    }
+
+    const mapImages = (imageList) => {
+        const imageListObj= imageList.map((image) => {
+            return {
+                id: image.id,
+                likes: image.likes,
+                description: image.description,
+                user:{
+                    name: image.user.name,
+                    link: image.user.links.html,
+                },
+                urls:{
+                    regular: image.urls.regular,
+                    thumb: image.urls.thumb
+                },
+                link: image.links.download
+            }
+        })
+
+        setImages(imageListObj)
+    }
+
+    const handelKeyUp = (event) => {
+        if(event.key === 'Enter') {
+            searchPhotos()
+        }
+    }
+
     return (
         <div className="input-wrapper">
-            <input id="realbox" type="search" placeholder="Search"></input>
+            <input id="realbox" type="search" placeholder="Search" onKeyUp={handelKeyUp} ref={inputElement}></input>
+            <button onClick={searchPhotos}>Search</button>
         </div>
     );
 }
