@@ -1,0 +1,12 @@
+.result-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content:center;
+    column-gap:10px
+}
+
+.box-wrapper {
+    border: 1px solid #ccc;
+}

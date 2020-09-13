@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 import fetchPhotos from "../services/photo-service";
 
-import './SearchResult.css';
+import './SearchBox.css';
+
 function SearchBox(props) {
-    const [images, setImages] = useState([])
+    const {setImages} = props
     const inputElement = useRef(null)
     
     const searchPhotos = async () => {
@@ -14,6 +15,7 @@ function SearchBox(props) {
 
     const mapImages = (imageList) => {
         const imageListObj= imageList.map((image) => {
+            console.log(image)
             return {
                 id: image.id,
                 likes: image.likes,
@@ -21,6 +23,7 @@ function SearchBox(props) {
                 user:{
                     name: image.user.name,
                     link: image.user.links.html,
+                    profile_image: image.user.profile_image.small
                 },
                 urls:{
                     regular: image.urls.regular,
