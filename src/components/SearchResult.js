@@ -1,4 +1,7 @@
-import React, { useState } from 'react'; 
+import React, { useState, useContext } from 'react'; 
+import ImagesContext from '../context/ImagesContext'
+import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
+
 
 import Modal from './Modal'; 
 
@@ -6,10 +9,9 @@ import './SearchResult.css'
 
 
 function SearchResult(props) {
-    const [ selectedImage, setSelectedImage] = useState('')
+
     const [ showModal, setModalShow ] = useState(false)
-    
-    const { imageList } = props;
+    const { images, setSelectedImage } = useContext(ImagesContext)
 
     const handelImageClick = (imageId) => {
         setSelectedImage(imageId)
@@ -18,31 +20,36 @@ function SearchResult(props) {
 
     return (
         <>
-            <div className="result-wrapper">
-                {imageList.map((img)=> { 
-                    return (
-                        <div className="box-wrapper" key={img.id} onClick={() => handelImageClick(img.id)}>
-                            <div className="img-wrapper">
-                                <img src={img.urls.thumb}/>
-                            </div>
-                            <div className="info-wrapper">
-                                <a href="" className="authorAvatar">
-                                    <img src={img.user.profile_image}/>
-                                </a>
-                                <div className="titleAndAuthor">
-                                    <h3 className="title">
-                                        <a href="">{img.description}</a>
-                                    </h3>
-                                    <p className="authorName">
-                                        <a href="">{img.user.name}</a>
-                                    </p>
+            <div className="swiper-thumb">
+                <div className="swiper-container" >
+                    <div className="swiper-wrapper result">
+                        {images.map((img)=> { 
+                            return (
+                                <div className="slide" key={img.id} onClick={() => handelImageClick(img.id)}>
+                                    <div className="image-wrapper">
+                                        <img src={img.urls.thumb} className="image-thumb"/>
+                                        <span className="overlay">
+                                            <div className="authorAvatar">
+                                                <img src={img.user.profile_image}/>
+                                            </div>
+                                            {/* <div className="titleAndAuthor">
+                                                <h3 className="title">
+                                                    <a href="">{img.description}</a>
+                                                </h3>
+                                                <p className="authorName">
+                                                    <a href="">{img.user.name}</a>
+                                                </p>
+                                            </div> */}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )
-                })}
+                            )
+                        })}
+                    </div>
+                </div>
+                
             </div>
-            { showModal && <Modal selectedImage={selectedImage}></Modal> }
+            { showModal && <Modal setModalShow={setModalShow} showModal={showModal}></Modal> }
 
         </>
     );

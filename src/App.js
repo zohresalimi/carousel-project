@@ -8,7 +8,9 @@ import ImagesContext from './context/ImagesContext'
 
 function App() {
   const [images, setImages] = useState([])
-  const contextValue = { images, setImages }
+  const [ selectedImage, setSelectedImage] = useState('')
+
+  const contextValue = { images, setImages, selectedImage, setSelectedImage }
 
   return (
     <ImagesContext.Provider value={contextValue}>
@@ -16,8 +18,8 @@ function App() {
         <ImagesContext.Consumer>
           { ({images, setImages}) => (
             <>
-              <SearchBox setImages={setImages}></SearchBox>
-              <SearchResult imageList={images}></SearchResult>
+              <SearchBox></SearchBox>
+              <SearchResult></SearchResult>
             </>
           )}
         </ImagesContext.Consumer>

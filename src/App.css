@@ -1,9 +1,9 @@
 
 
 .App{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    z-index: 1
+    /* position: fixed;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    width: 800px; */
 }

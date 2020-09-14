@@ -1,14 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import fetchPhotos from "../services/photo-service";
+import SearchIcon from '@material-ui/icons/Search';
+import ImagesContext from '../context/ImagesContext'
 
 import './SearchBox.css';
 
 function SearchBox(props) {
-    const {setImages} = props
+    const { setImages } = useContext(ImagesContext)
     const inputElement = useRef(null)
     
     const searchPhotos = async () => {
-        console.log(inputElement.current.value)
         const searchResult = await fetchPhotos(inputElement.current.value)
         mapImages(searchResult.results)
     }
@@ -45,7 +46,7 @@ function SearchBox(props) {
     return (
         <div className="input-wrapper">
             <input id="realbox" type="search" placeholder="Search" onKeyUp={handelKeyUp} ref={inputElement}></input>
-            <button onClick={searchPhotos}>Search</button>
+            <button onClick={searchPhotos} className="search-btn"><SearchIcon></SearchIcon></button>
         </div>
     );
 }
