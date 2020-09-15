@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'; 
 import ImagesContext from '../context/ImagesContext'
-import ArrowRightAlt from '@material-ui/icons/ArrowRightAlt';
 
 
 import Modal from './Modal'; 
