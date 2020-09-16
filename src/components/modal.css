@@ -106,12 +106,16 @@
 .carousel-inner>.item{
   position: relative;
   transition: transform .6s ease-in-out;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #000;
 }
 
 .item img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .img-filter {
