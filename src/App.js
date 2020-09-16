@@ -7,10 +7,11 @@ import SearchResult from './components/SearchResult'
 import ImagesContext from './context/ImagesContext'
 
 function App() {
-  const [images, setImages] = useState([])
+  const [ images, setImages ] = useState([])
+  const [ searchTerm, setSearchTerm ] = useState("")
   const [ selectedImage, setSelectedImage] = useState('')
 
-  const contextValue = { images, setImages, selectedImage, setSelectedImage }
+  const contextValue = { images, setImages, selectedImage, setSelectedImage, searchTerm, setSearchTerm }
 
   return (
     <ImagesContext.Provider value={contextValue}>

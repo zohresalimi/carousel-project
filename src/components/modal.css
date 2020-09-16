@@ -1,6 +1,5 @@
 .modal {
   opacity: 0;
-  visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
@@ -8,12 +7,11 @@
   left: 0;
   text-align: left;
   background: rgba(0, 0, 0, 0.54);
-  transition: opacity .25s ease;
   z-index: 99;
+  transition:all .5s ease-in-out;
 }
 .modal.show {
-  opacity: 1;
-  visibility: visible;
+  opacity: 1;  
 }
 
 .modal__bg {
@@ -141,10 +139,20 @@
   border: 1px solid #ccc;
 }
 
-.text-info{
-
+@keyframes fadeIn {
+  0%{ 
+    opacity: 0;
+  }
+  100%{ 
+    opacity: 1;
+  }
 }
 
-.user-detail{
-  
+@keyframes fadeOut {
+  0%{ 
+    opacity: 1;
+  }
+  100%{ 
+    opacity: 0;
+  }
 }

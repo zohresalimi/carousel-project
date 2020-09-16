@@ -17,10 +17,9 @@ const fetchData = async (searchTerm) => {
 
     try {
         if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' + response.status);
+            console.log('Looks like there was a problem. Status Code: ' +response.status);
             return;
         }
-
         return await response.json()
     } catch (error) {
         console.log(`somthing went wrong: ${error.message}`)

@@ -1,9 +1,17 @@
 
 .titleAndAuthor .title {
-    width: 10em; /* the element needs a fixed width (in px, em, %, etc) */
+    width: 7em; /* the element needs a fixed width (in px, em, %, etc) */
     overflow: hidden; /* make sure it hides the content that overflows */
     white-space: nowrap; /* don't break the line */
     text-overflow: ellipsis; /* give the beautiful '...' effect */
+    padding: 0;
+    margin: 0;
+}
+
+.titleAndAuthor .title a{
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
 }
 
 .swiper-thumb {
@@ -48,11 +56,11 @@
     flex-shrink: 0;
     position: relative;
     transition-property: transform;
-    position: relative;
     width: 180px;
     height: 180px;
     box-sizing: border-box;
     cursor: pointer;
+    transition:all .5s ease-in-out;
 }
 
 .swiper-wrapper.result .slide {
@@ -64,7 +72,9 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
+
 .image-wrapper img {
     width: 100%;
     height: 100%;
@@ -75,16 +85,25 @@
 .image-wrapper .overlay{
     position: absolute;
     left: 2px;
-    top: 2px;
-    background-color: rgba(43, 44, 54, 0.6);
+    background-color: rgba(0, 0, 0, 0.54);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     color: #fff;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
+    width: calc(100% - 14px);
+    height: auto;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 5px;
+    animation: slideDown .2s linear;
+    bottom: -30px;
     opacity: 0;
-    transition: all 0.2s linear;
+}
+
+.image-wrapper:hover .overlay{
+    animation: slideUp .2s linear;
+    opacity: 1;
+    bottom: 0;
 }
 
 .swiper-next-button,.swiper-prev-button {
@@ -115,4 +134,86 @@
 
 .swiper-prev-button em {
     transform: rotate(180deg);
+}
+
+.authorAvatar{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.authorAvatar img{
+    border-radius: 50%;
+}
+
+.authorName{
+    margin: 0
+}
+
+.authorName a{
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.titleAndAuthor span, .titleAndAuthor span svg{
+    font-size: 13px;
+}
+
+.no-results{
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(238 238 238 / 47%);
+    border-bottom: 2px solid #f50057;
+    padding: 0 75px;
+}
+
+.no-results h3{
+    font-size: 19px;
+    font-weight: 100;
+}
+
+.no-results p{
+    font-weight: 300;
+}
+
+
+@keyframes slideUp{
+    0%{ 
+        bottom: -30px;
+        opacity: 0;
+    }
+    100%{ 
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown{
+    0%{ 
+        bottom: 0;
+        opacity: 1;
+    }
+    100%{ 
+        bottom: -30px;
+        opacity: 0;
+    }
+}
+
+@keyframes sketchIn {
+	0% {
+		stroke-dashoffset: 778;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes sketchOut {
+	0% {
+		stroke-dashoffset: 0;
+	}
+	100% {
+		stroke-dashoffset: 778;
+	}
 }

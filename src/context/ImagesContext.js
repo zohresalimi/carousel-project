@@ -5,5 +5,7 @@ export default createContext({
     setImages : () => {},
     selectedImage: "",
     setSelectedImage: () => {},
+    searchTerm: "", 
+    setSearchTerm:() => {},
 })
   

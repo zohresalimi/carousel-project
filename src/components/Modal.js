@@ -5,14 +5,12 @@ import ImagesContext from '../context/ImagesContext'
 import './modal.css'
 
 const SelectedImage = () =>{
-    const { images, selectedImage, setSelectedImage } = useContext(ImagesContext)
-    console.log(images)
+    const { images, selectedImage } = useContext(ImagesContext)
     const img = images.find((image) => image.id === selectedImage)
-    console.log(img)
     return(
         <div className="carousel-inner">
             <div className="item">
-                <img src={img.urls.regular}/>
+                <img src={img.urls.regular} alt={img.name}/>
             </div>
         </div>
     )
@@ -40,7 +38,7 @@ function Modal(props) {
 
     const handelNextButton = () =>{
         const currImageIndex = images.findIndex((image) => image.id === selectedImage);
-        if(currImageIndex == images.length-1){
+        if(currImageIndex === images.length-1){
             setSelectedImage(images[0].id)
             return
         }
@@ -77,12 +75,7 @@ function Modal(props) {
                                 return (
                                     <div className={`slide ${selectedImage === img.id ?"img-filter":""}`} key={img.id} onClick={() => selectImage(img.id)} ref={selectedImage === img.id ?currentElement: null}>
                                         <div className="image-wrapper">
-                                            <img src={img.urls.thumb} className="image-thumb"/>
-                                            <span className="overlay">
-                                                <div className="authorAvatar">
-                                                    <img src={img.user.profile_image}/>
-                                                </div>
-                                            </span>
+                                            <img src={img.urls.thumb} className="image-thumb" alt={img.name}/>
                                         </div>
                                     </div>
                                 )
